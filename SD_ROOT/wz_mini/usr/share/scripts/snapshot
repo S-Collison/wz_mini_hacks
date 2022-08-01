@@ -1,0 +1,5 @@
+#!/bin/sh
+
+TMPFILE="$(dirname "$1")/$$.$(basename "$1")"
+
+cmd jpeg | sed 1,3d > "$TMPFILE" && mv -f "$TMPFILE" "$1" || rm "$TMPFILE"

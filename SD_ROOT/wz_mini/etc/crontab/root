@@ -1,0 +1,10 @@
+* * * * * /opt/wz_mini/usr/share/scripts/snapshot /opt/wz_mini/www/snapshot.jpg
+* * * * * sleep 15 ; /opt/wz_mini/usr/share/scripts/snapshot /opt/wz_mini/www/snapshot.jpg
+* * * * * sleep 30 ; /opt/wz_mini/usr/share/scripts/snapshot /opt/wz_mini/www/snapshot.jpg
+* * * * * sleep 45 ; /opt/wz_mini/usr/share/scripts/snapshot /opt/wz_mini/www/snapshot.jpg
+0  * * * * /opt/wz_mini/usr/share/scripts/gen_hosts c1ybkrkbr1j10x.credentials.iot.us-west-2.amazonaws.com www.google.com api.wyzecam.com kinesisvideo.us-west-2.amazonaws.com > /etc/hosts
+10 * * * * /opt/wz_mini/usr/share/scripts/gen_hosts c1ybkrkbr1j10x.credentials.iot.us-west-2.amazonaws.com www.google.com api.wyzecam.com kinesisvideo.us-west-2.amazonaws.com > /etc/hosts
+20 * * * * /opt/wz_mini/usr/share/scripts/gen_hosts c1ybkrkbr1j10x.credentials.iot.us-west-2.amazonaws.com www.google.com api.wyzecam.com kinesisvideo.us-west-2.amazonaws.com > /etc/hosts
+30 * * * * /opt/wz_mini/usr/share/scripts/gen_hosts c1ybkrkbr1j10x.credentials.iot.us-west-2.amazonaws.com www.google.com api.wyzecam.com kinesisvideo.us-west-2.amazonaws.com > /etc/hosts
+40 * * * * /opt/wz_mini/usr/share/scripts/gen_hosts c1ybkrkbr1j10x.credentials.iot.us-west-2.amazonaws.com www.google.com api.wyzecam.com kinesisvideo.us-west-2.amazonaws.com > /etc/hosts
+50 * * * * /opt/wz_mini/usr/share/scripts/gen_hosts c1ybkrkbr1j10x.credentials.iot.us-west-2.amazonaws.com www.google.com api.wyzecam.com kinesisvideo.us-west-2.amazonaws.com > /etc/hosts
