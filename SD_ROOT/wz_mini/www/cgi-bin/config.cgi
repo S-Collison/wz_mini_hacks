@@ -13,9 +13,35 @@ echo -e "Content-type: text/html\n\n"
 echo ""
 
 
+die_no_config() 
+{
+if [ -f ${hack_ini} ]
+then
+    if [ -s ${hack_ini} ]
+    then
+        echo "$hack_ini exists and not empty"
+    else
+ echo "$hack_ini exists but empty"
+ echo "if you reboot then the hack will fail "
+ exit
+    fi
+else
+ echo "$hack_ini file does  not exist"
+ echo "if you reboot then the hack will fail. Please insure you have a wz_hack.conf file.."
+ exit 
+fi
+
+}
+
+
 reboot_camera()  {
-    echo "rebooting camera (refreshing screen in 90 seconds)"
-    echo '<script type="text/javascript">setTimeout(function(){ document.location.reload (); },90 * 1000)</script>'
+    die_no_config
+    reboot_wait=90
+    echo "rebooting camera (refreshing screen in $reboot_wait seconds)"
+    echo '<script type="text/javascript">setTimeout(function(){ document.location.href = "/cgi-bin/config.cgi"; },'$reboot_wait' * 1000)</script>'
+    handle_css config.css
+    version_info "display_BAR"
+    reboot 
     exit
 }
 
@@ -196,21 +222,15 @@ function html_cam_feed
 
 
 
-function handle_css
-{
-echo -ne "<style type=\"text/css\">"
-cat config.css
-echo -ne '</style>';
-}
-
 
 echo -ne "<html><head><title>$title</title>"
-handle_css wz_mini_web.css
+handle_css config.css
 
 echo '<script type="text/javascript" src="/config.js" ></script>'
 echo -ne "</head>"
 
-echo -ne '<body>'
+
+echo -ne '<body ip="'$ipaddr'" mac="'$macaddr'"  >'
 echo -ne "<h1>$title</h1>";
 
 
@@ -242,9 +262,10 @@ while IFS= read -r ARGUMENT; do
 	      echo '</div>'
            fi
            CONFIG_BLOCK=$((CONFIG_BLOCK + 1))
-	   echo '<div class="ii_block" block_number="'$CONFIG_BLOCK'" >'
 	   BTITLE=${ARGUMENT//#/ }
-           echo -ne '<div class="ii_block_name">'$BTITLE'</div>'
+           BN=$(echo $BTITLE | tr -d ' ')
+           echo '<div class="ii_block" block_number="'$CONFIG_BLOCK'" block_name="'$BN'" >'
+           echo -ne '<div class="ii_block_name" >'$BTITLE'</div>'
 	else
             echo -ne '<div class="ii_info">'$ARGUMENT'</div>'
 	fi
